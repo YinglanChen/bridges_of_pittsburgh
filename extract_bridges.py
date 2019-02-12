@@ -10,28 +10,37 @@
 # - the last column has field "within_boundaries" and values "TRUE" or "FALSE"
 # LIBRARY
 import csv
+# GLOBALS, dependent on format of csv file
 
+WITHIN_BOUND = 10
+OSM_BRIDGE = 5
+# each bridge occupies 2 nodes
 def main():
     # for simplicity, hard code filename here
     # for more general use, use command line arguments
+    output = [] 
     with open('./starter_data/pgh_edges.csv', newline='') as csvfile:
         nodereader = csv.reader(csvfile)
-        foo_counter = 0 # delete it later
+        next(nodereader) # skip title
+
         for row in nodereader:
-            # ignore the first row?
-            if row[-1] == "TRUE" and row[?] = "yes":
-                write the entire row to an output file 
-            otherwise:
-                discard the road
-            # print(', '.join(row))
-    finish writing the output file 
-    with open('?.csv', mode='w', newline='') as csvfile:
-        vertex_writer = csv.writer(csvfile, delimiter=',',
-                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        for vertices in v:
-            vertex_writer.writerow(v[])
-            vertex_writer.writerow(v[])
-    return 0;
+            if foo_counter > 10: break
+            if (row[WITHIN_BOUND] == "TRUE" and row[OSM_BRIDGE] == "yes"):
+                output.add(row)
+                # write the entire row to an output file 
+            # otherwise:
+                # discard the road
+    return 0        
+            
+
+    # finish writing the output file 
+    # with open('?.csv', mode='w', newline='') as csvfile:
+    #     vertex_writer = csv.writer(csvfile, delimiter=',',
+    #                         quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    #     for vertices in v:
+    #         vertex_writer.writerow(v[])
+    #         vertex_writer.writerow(v[])
+    
 
 if __name__ == '__main__':
     main()
