@@ -9,9 +9,10 @@
 #   from,to,id,osm_way_id,osm_bridge_relation_id,osm_bridge,osm_highway,
 #   osm_label,bridge_id,distance,within_boundaries
 
-# PROBLEM TO DO
+# PROBLEMs
 # We expect each bridge occupies 2 nodes, but in the output file, 
 # a bridge has multiple nodes
+# not all bridges have birdge_id
 
 # LIBRARY
 import csv
@@ -19,7 +20,9 @@ import csv
 # GLOBALS, dependent on format of csv file
 WITHIN_BOUND = 10
 OSM_BRIDGE = 5
-
+OSM_LABEL = 7
+FROM_ID = 0
+TO_ID = 1
 
 def main():
     # for simplicity, hard code filename here
@@ -32,7 +35,20 @@ def main():
             # discard row if not within bound or not bridge
             if (row[WITHIN_BOUND] == "TRUE" and row[OSM_BRIDGE] == "yes"):
                 output.append(row)
-            
+    # merge node with same id
+    # what to do if no label? 
+    # for b in range(len(output)):
+    #     row = output[b];
+    #     if (b == len(output) - 1): continue
+    #     next_row = output[b+1]
+    #     curr_label = row[osm_label];
+    #     next_label = next_row[osm_label];
+    #     # find min from and max to merge
+    #     if (curr_label == next_label):
+    #         from_id = min(row[FROM_ID], next_row[FROM_ID])
+    #         to_id = max(row[TO_ID], row[TO_ID])
+    #         delete 2 rows and add new row with (from_id, to_id )
+
     with open('./processed_data/bridges.csv', mode='w', newline='') as csvfile:
         bridge_writer = csv.writer(csvfile, delimiter=',')
         bridge_writer.writerow(header)
