@@ -1,3 +1,5 @@
+# Yinglan Chen
+# Feb 2019
 """
 Citation: https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
 Dijkstra Algorithm
@@ -28,41 +30,47 @@ To modify floyd-warshall, we can exclude all bridge nodes in k
 So that the shorted path between any pair of nodes, whether bridge or not, 
 will not touch any bridge points
 """
+
+# use matrix representation because edges are dense
+
+# LIBRARIES
 import csv
+import sys
 
+# GLOBAL
+INT_MAX = sys.maxsize
+
+# MAIN
 def main():
+	nodes = [] # problem extracting nodes; file inconsistent
+	bridge_nodes = [] # read from bridge.csv, use hashset
+ 	###### template for creating bridge_nodes 
+    with open('./starter_data/pgh_node.csv', newline='') as csvfile:
+        bridgeheader = csv.reader(csvfile)
+        header = next(nodereader) # skip title
+        for row in bridgereader:
+            append(row[?]); 
+    ###### end of template 
+    # create empty path matrix
+    A = [[INT_MAX for j in range(num_nodes)] for i in range(num_nodes)]
+    # initialize
+    for i in range(num_nodes):
+    	A[i][i] = 0
+    for edge in range():
+    	update A[u][v] = edge weights
+    	
+    # update
+    for k in range(num_nodes):
+    	# do not use bridge node when computing edge weights
+    	if (k in bridge_nodes): continue 
+    	for i in range(num_nodes):
+    		for j in range(num_nodes):
+    			A[i][j] = min(A[i][j], (A[i][k] + A[k][j]))
 
-	input vertices.csv
-	input node.csv
-
-
+    # write output to some csv file
 	return 0
 
-def filter left only with internal nodes()
 
-the problem is actually all pair shortest path
-can I do better ? 
-
-def dijsktra(graph, src, target):
-	# Dijkstra's algorithm to find the shortest path between a and b. It picks the unvisited vertex with the lowest distance, calculates the distance through it to each unvisited neighbor, and updates the neighbor's distance if smaller. Mark visited (set to red) when done with neighbors.
-	for all vertices, unvisited
-	look up distance using nodes (assuming nodes are close enough so we use euclidean distance)
-	initiall distance to all other vertices are infinity
-	start from a , udpate a neighbors with their edge weights/ distance 
-	find the unvisited vertex with the lowest distance
-	calculates the distance through it each unviisted neightbor,
-	updates the neighbors if smaller
-
-	go until we reach b
-
-	return shortest path
-
-we will have to use n^2 space becasue almost every pair of vertex(Bridge)
-has an edge between them, and it is two way (directed edge)
-
-how to use graph representation 
-# - adjancecy list (b1, b2, dist)
-- adjancecy matrix [b1][b2] = xxx 
 
 
 if __name__ == '__main__':
