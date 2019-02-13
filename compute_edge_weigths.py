@@ -24,6 +24,9 @@ for k = 1 to n do:
 	for each i,j do:
 		A[i][j] = min( A[i][j], (A[i][k] + A[k][j]);
 end of citation
+To modify floyd-warshall, we can exclude all bridge nodes in k
+So that the shorted path between any pair of nodes, whether bridge or not, 
+will not touch any bridge points
 """
 import csv
 
